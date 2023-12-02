@@ -15,7 +15,7 @@ import com.microservice.prices.application.service.PriceService;
 
 @SpringBootApplication(scanBasePackages = {"com.microservice.prices"})
 @EnableJpaRepositories(basePackages={"com.microservice.prices.infrastructure.h2.repository"})
-@ComponentScan(basePackages = { "com.microservice.*" })
+@ComponentScan(basePackages = { "com.microservice.*" }, basePackageClasses = {com.microservice.prices.domain.model.Price.class })
 @EntityScan(basePackageClasses={com.microservice.prices.infrastructure.h2.entity.PriceEntity.class})
 @EnableTransactionManagement
 public class SpringbootRestApplication {
