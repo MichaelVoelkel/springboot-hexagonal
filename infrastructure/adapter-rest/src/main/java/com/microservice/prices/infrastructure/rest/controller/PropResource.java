@@ -49,4 +49,14 @@ public class PropResource {
                 return price.map(c -> ResponseEntity.ok().body(propMapper.toDto(c)))
                             .orElse(ResponseEntity.noContent().build());                
         }
+
+        @GetMapping("/all")
+        @ApiResponse(responseCode = "200", description = "Price found for current input data", content = @Content(mediaType = "application/json", schema = @Schema(type = "object", implementation = PriceResponseDto.class)))
+        @ApiResponse(responseCode = "204", description = "No prices found for the current input parameters", content = @Content(mediaType = "application/json"))
+        public ResponseEntity<PriceResponseDto> getAllPrices() {
+            var prices = apiService.getAllPrices();
+            log.debug("number of prices = {}", prices.size());
+
+            return ResponseEntity.ok().body(propMapper.toDto(prices.iterator().next()));
+        }
 }
