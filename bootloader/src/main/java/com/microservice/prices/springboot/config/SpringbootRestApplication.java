@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.microservice.prices.application.ports.api.PricesAPIService;
 import com.microservice.prices.application.ports.spi.PricePersistance;
 import com.microservice.prices.application.service.PriceService;
-import com.microservice.prices.infrastructure.h2.adapter.NotherAdapter;
 
 
 @SpringBootApplication(scanBasePackages = {"com.microservice.prices"})
