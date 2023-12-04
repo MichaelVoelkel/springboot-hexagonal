@@ -5,12 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.microservice.prices.application.ports.api.PricesAPIService;
 import com.microservice.prices.application.ports.spi.PricePersistance;
 import com.microservice.prices.application.service.PriceService;
+import com.microservice.prices.infrastructure.h2.adapter.NotherAdapter;
 
 
 @SpringBootApplication(scanBasePackages = {"com.microservice.prices"})
@@ -28,5 +30,11 @@ public class SpringbootRestApplication {
 	PricesAPIService pricesAPIService(PricePersistance pricePersistance) {
 		return new PriceService(pricePersistance);
 	}
+
+    @Bean
+    @Primary
+    PricePersistance notherAdapter() {
+        return new NotherAdapter();
+    }
 
 }

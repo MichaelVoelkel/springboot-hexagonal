@@ -19,6 +19,7 @@
     <properties>
         <java.version>17</java.version>
         <mapstruct.version>1.6.0.Beta1</mapstruct.version>
+        <start-class>com.microservice.prices.springboot.config.SpringbootRestApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
@@ -82,8 +83,25 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>compile-java-17</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <release>17</release>
+                            <compileSourceRoots>
+                                <compileSourceRoot>${project.basedir}/src/main</compileSourceRoot>
+                                <compileSourceRoot>${project.basedir}/src/ports</compileSourceRoot>
+                            </compileSourceRoots>
+                            <outputDirectory>${project.build.outputDirectory}/BOOT-INF/classes/</outputDirectory>
+                            <multiReleaseOutput>true</multiReleaseOutput>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
-
 </project>
